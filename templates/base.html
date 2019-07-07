@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="stylesheet" href="{{url_for('static', filename ='css/main.css')}}">
-        <title>
-            {% block title %}My proyecto flask |{% endblock %}
-        </title>
-    </head>
-    <body>
-        <header>
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+    {{ super() }}
+    <title>
+        {% block title %}My proyecto flask |{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{{url_for('static', filename ='css/main.css')}}">
+{% endblock %}
+    {% block body %}
+        {% block navbar %}
             {% include 'navbar.html' %}
-        </header>
-        {% block content %}
         {% endblock %}
-    </body>
+        {% block content %}{% endblock %}
+    {% endblock %}
 </html>
