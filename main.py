@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, make_response, render_template, session
+from flask import Flask, request, redirect, make_response, render_template, session, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
@@ -44,11 +44,14 @@ def hello():
     context = {
         'user_ip': user_ip,
         'todos': todos,
-        'login_form':login_form
+        'login_form':login_form,
+        'username':username
     }
 
     if login_form.validate_on_submit():
         username = login_form.username.data
         session['username'] = username
+
+        return redirect(url_for('index'))
 
     return render_template('hello.html', **context)
